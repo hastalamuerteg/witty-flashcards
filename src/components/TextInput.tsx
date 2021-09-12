@@ -1,12 +1,21 @@
+import { ChangeEvent } from "react";
 import { getNewId } from "../services/idService";
+
+interface ITextInputProps {
+  labelDescription: string;
+  onInputChange: (args: string) => void;
+  id?: string;
+  inputValue: string;
+}
+
 
 export default function TextInput({
   labelDescription = "Label description",
-  onInputChange = null,
+  onInputChange,
   id = getNewId(),
   inputValue = "",
-}) {
-  function handleInputChange({ currentTarget }) {
+}:ITextInputProps) {
+  function handleInputChange({ currentTarget }:ChangeEvent<HTMLInputElement>) {
     if (onInputChange) {
       const newValue = currentTarget.value;
       onInputChange(newValue);

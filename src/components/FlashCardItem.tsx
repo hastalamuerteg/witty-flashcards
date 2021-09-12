@@ -1,10 +1,12 @@
 import { FiEdit3 as EditionIcon, FiTrash2 as DeleteIcon } from "react-icons/fi";
+import {IFlashCardItemProps} from '../@types/flashcard'
+
 
 export default function FlashCardItem({
   children: flashcard,
-  onFlashCardDelete = null,
-  onFlashCardEdit = null,
-}) {
+  onFlashCardDelete,
+  onFlashCardEdit,
+}:IFlashCardItemProps) {
   const { title, description } = flashcard;
 
   function handleDeleteButtonClick() {

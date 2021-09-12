@@ -1,10 +1,15 @@
 import Button from "./Button";
 import { BiMessageError as ErrorIcon } from "react-icons/bi";
 
+interface IServerErrorProps {
+  children: string;
+  optionalMessage: string;
+}
+
 export default function ServerError({
   children: errorMessage,
   optionalMessage = "",
-}) {
+}:IServerErrorProps) {
   function handleRefreshPageButton() {
     window.location.reload();
   }
@@ -17,7 +22,7 @@ export default function ServerError({
         <p>{optionalMessage || ""}</p>
       </div>
       <div className="my-6">
-        <Button color="bg-green-500" onButtonClick={handleRefreshPageButton}>
+        <Button type="button" color="bg-green-500" onButtonClick={handleRefreshPageButton}>
           Refresh page
         </Button>
       </div>

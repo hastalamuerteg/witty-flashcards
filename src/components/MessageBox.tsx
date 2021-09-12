@@ -1,4 +1,8 @@
-export default function MessageBox({ createMode }) {
+interface IMessageBoxProps {
+  createMode: boolean;
+}
+
+export default function MessageBox({ createMode }:IMessageBoxProps) {
   const createModeClassName = createMode ? "bg-green-300" : "bg-yellow-300";
   const createModeMessageBox = createMode ? "creation" : "edition";
   return (

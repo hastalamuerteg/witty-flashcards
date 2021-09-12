@@ -1,14 +1,24 @@
 import { getNewId } from "../services/idService";
+import {ChangeEvent} from 'react'
+
+interface ITextAreaProps {
+  labelDescription:string;
+  textAreaValue: string;
+  onTextAreaChange: (args: string) => void;
+  maxLength?:number;
+  rows?: number;
+  id?:string;
+}
 
 export default function TextArea({
   labelDescription = "Label description",
   textAreaValue = "",
-  onTextAreaChange = null,
+  onTextAreaChange,
   maxLength = 230,
   rows = 4,
-  id = getNewId(),
-}) {
-  function handleTextAreaChange({ currentTarget }) {
+  id = getNewId()
+}:ITextAreaProps) {
+  function handleTextAreaChange({ currentTarget }:ChangeEvent<HTMLTextAreaElement>) {
     if (onTextAreaChange) {
       const newValue = currentTarget.value;
       onTextAreaChange(newValue);
@@ -24,7 +34,6 @@ export default function TextArea({
       <textarea
         id={id}
         className="border p-2 rounded-xl resize-none focus:outline-none focus:ring-4 ring-green-100"
-        type="text"
         value={textAreaValue}
         maxLength={maxLength}
         rows={rows}

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:3001"
+    ? "https://witty-flashcards.glitch.me"
     : "https://witty-flashcards.glitch.me";
 
 const AxiosInstance = axios.create({

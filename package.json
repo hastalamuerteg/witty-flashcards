@@ -19,10 +19,14 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "2.0.4",
+    "@types/react": "^17.0.20",
+    "@types/react-dom": "^17.0.9",
+    "@types/uuid": "^8.3.1",
     "autoprefixer": "9",
     "postcss": "7",
     "serve": "11.3.2",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "typescript": "^4.4.3"
   },
   "scripts": {
     "dev": "craco start",
