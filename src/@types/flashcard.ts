@@ -2,6 +2,7 @@ export interface IFlashcard {
   id: string;
   title: string;
   description: string;
+  showTitle?: boolean;
 }
 
 export interface IFlashCardProps {
@@ -13,7 +14,7 @@ export interface IFlashCardProps {
 }
 
 export interface IFlashCardItemProps {
-  children: IFlashCardProps,
+  children: IFlashCardProps;
   onFlashCardDelete: (id: string) => void;
-  onFlashCardEdit: (flashcard:  IFlashcard) => void;
+  onFlashCardEdit: (flashcard: IFlashcard) => void;
 }

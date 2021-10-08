@@ -10,21 +10,21 @@ const AxiosInstance = axios.create({
   timeout: 10000,
 });
 
-export async function getDataFromServer(url) {
+export async function getDataFromServer(url: string) {
   const { data } = await AxiosInstance.get(url);
   return data;
 }
 
-export async function deleteDataFromServer(url) {
+export async function deleteDataFromServer(url: string) {
   await AxiosInstance.delete(url);
 }
 
-export async function createDataOnServer(url, dataObj) {
+export async function createDataOnServer(url: string, dataObj: Object) {
   const { data } = await AxiosInstance.post(url, dataObj);
   return data;
 }
 
-export async function editDataOnServer(url, dataObj) {
+export async function editDataOnServer(url: string, dataObj: Object) {
   const { data } = await AxiosInstance.put(url, dataObj);
   return data;
 }
