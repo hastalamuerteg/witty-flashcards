@@ -14,7 +14,7 @@ export interface IFlashCardProps {
 }
 
 export interface IFlashCardItemProps {
-  children: IFlashCardProps;
+  children: IFlashcard;
   onFlashCardDelete: (id: string) => void;
   onFlashCardEdit: (flashcard: IFlashcard) => void;
 }

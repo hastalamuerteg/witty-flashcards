@@ -1,10 +1,10 @@
-import {IFlashcard} from '../@types/flashcard'
+import { ReactNode } from "react";
 
 interface IFlashCardsProps {
-  children: IFlashcard[];
+  children: ReactNode;
 }
 
-export default function FlashCards({ children: flashcards }:IFlashCardsProps) {
+export default function FlashCards({ children: flashcards }: IFlashCardsProps) {
   return (
     <div className="p-3 flex justify-center items-center flex-wrap">
       {flashcards}

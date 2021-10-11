@@ -35,10 +35,12 @@ export function FlashCardsPage() {
   const [allCards, setAllCards] = useState<IFlashcard[]>([]);
   const [studyCards, setStudyCards] = useState<IFlashcard[]>([]);
   const [loading, setloading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
   const [createMode, setCreateMode] = useState(true);
   const [selectedTab, setSelectedTab] = useState<number>(0);
-  const [selectedFlashCard, setSelectedFlashCard] = useState<IFlashcard>();
+  const [selectedFlashCard, setSelectedFlashCard] = useState<IFlashcard>(
+    {} as IFlashcard
+  );
 
   const [radioButtonshowTitle, setRadioButtonShowTitle] =
     useState<boolean>(true);
@@ -99,8 +101,8 @@ export function FlashCardsPage() {
       setAllCards(updatedCardsAfterDelete);
       setError("");
       toast.success("Card successfully deleted!");
-    } catch (error) {
-      setError(error.message);
+    } catch (err) {
+      setError(err.message);
     }
   }
 
@@ -112,17 +114,14 @@ export function FlashCardsPage() {
 
   function handleNewFlashCard() {
     setCreateMode(true);
-    setSelectedFlashCard(null);
+    setSelectedFlashCard({} as IFlashcard);
   }
 
   function handleTabSelect(tabIndex: number) {
     setSelectedTab(tabIndex);
   }
 
-  async function handleFlashCardPersist(
-    title: IFlashcard,
-    description: IFlashcard
-  ) {
+  async function handleFlashCardPersist(title: string, description: string) {
     if (createMode) {
       try {
         const newFlashCard = await apiCreateFlashcard(title, description);
@@ -139,18 +138,18 @@ export function FlashCardsPage() {
         await apiEditFlashcard(selectedFlashCard!.id, title, description);
 
         const updatedCardsList = allCards.map((card) => {
-          if (card.id === selectedFlashCard!.id) {
+          if (card.id === selectedFlashCard.id) {
             return { ...card, title, description };
           }
           return card;
         });
         setAllCards(updatedCardsList);
-        setSelectedFlashCard(null);
+        setSelectedFlashCard({} as IFlashcard);
         setCreateMode(true);
         setError("");
         toast.success(`Card "${title}" successfully edited!`);
-      } catch (error) {
-        setError(error.message);
+      } catch (err) {
+        setError(err.message);
       }
     }
   }
@@ -271,18 +270,18 @@ export function FlashCardsPage() {
               </RadioButton>
             </div>
             <FlashCards>
-              {studyCards.map(({ id, title, description, showTitle }) => {
-                return (
+              {studyCards.map(
+                ({ id, title, description, showTitle }: IFlashcard) => (
                   <FlashCard
                     key={id}
                     id={id}
                     title={title}
                     description={description}
-                    showFlashcardTitle={showTitle}
+                    showFlashcardTitle={showTitle as boolean}
                     onToggleFlashCard={handleToggleFlashCard}
                   />
-                );
-              })}
+                )
+              )}
             </FlashCards>
           </TabPanel>
         </Tabs>

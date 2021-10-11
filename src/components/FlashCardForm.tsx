@@ -1,23 +1,25 @@
-import { FormEvent, useEffect, useState, } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import TextArea from "./TextArea";
 import TextInput from "./TextInput";
 import Button from "./Button";
 import Error from "./Error";
-import {IFlashCardProps} from '../@types/flashcard';
+import { IFlashcard } from "../@types/flashcard";
 
 interface IFlashCardFormForm {
   createMode: boolean;
-  onPersist: (title:string, description:string) => void;
-  children: IFlashCardProps;
+  onPersist: (title: string, description: string) => void;
+  children: IFlashcard;
 }
 
 export default function FlashCardForm({
   createMode = true,
   onPersist,
   children: flashcard,
-}:IFlashCardFormForm) {
-  const [title, setTitle] = useState(flashcard?.title || "");
-  const [description, setDescription] = useState(flashcard?.description || "");
+}: IFlashCardFormForm) {
+  const [title, setTitle] = useState<string>(flashcard?.title || "");
+  const [description, setDescription] = useState<string>(
+    flashcard?.description || ""
+  );
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -36,10 +38,10 @@ export default function FlashCardForm({
     return title.trim() !== "" && description.trim() !== "";
   }
 
-  function handleTitleChange(newTitle:string) {
+  function handleTitleChange(newTitle: string) {
     setTitle(newTitle);
   }
-  function handleDescriptionChange(newDescription:string) {
+  function handleDescriptionChange(newDescription: string) {
     setDescription(newDescription);
   }
 
